@@ -1,0 +1,88 @@
+window {
+    border-color: rgba ( 155, 33, 237, 60% );
+    background-image: linear-gradient(
+        to right, 
+        rgba(62, 0, 243, 70%),  /* 50% transparent */
+        rgba(195, 100, 250, 0.3)
+    );
+    location: center;                  
+    width: 99%;
+    height: 99%; 
+    border-radius: 1em;
+    border: 0.15em;
+}
+
+inputbar {
+	children: [entry]; /*
+	VERY IMPORTANT LINE! WITHOUT IT THERE ARE VERY IRITATING ARTEFACTS, LIKE ":/".
+*/
+}
+
+* {
+	font: "Cantarell Bold Italic 10";
+        background: transparent;
+        /*
+             Type fc-list in the terminal. The typical output is /usr/font/path fontname style:style1, style2, ..., stylen. Then
+             you must type font: fontname style1 style2 ... stylen fontsize.
+        */
+}
+
+entry {
+    color:  rgba ( 255, 229, 255, 90% );
+    margin: 2em;
+    placeholder: "Type here";
+    placeholder-color: purple;
+    border: none;
+}
+
+configuration {
+        icon-theme: "Zafiro-Nord-Black-Blue"; // you must give precisely the icon-theme directory name in .icon directory. Unless Adwaita theme will be used
+	show-icons: true;
+	icon-size: 5;
+}
+
+listview {
+        scrollbar: false; // scrollbar is disabled
+	// lines: 1;
+        columns: 3;
+	border: none;
+        dynamic: false;
+}
+
+
+element {
+    children: [ element-icon, element-text ];
+    orientation: vertical;
+    spacing: 0.3em; 
+    padding: 0.5em;         
+    margin: 0.2em;
+}
+
+element-icon {
+    size: 2em;
+}
+
+element-text {
+    horizontal-align: 0.5;
+    color: rgba ( 255, 229, 255, 90% );
+}
+
+element.selected.normal {
+    background-color: rgba ( 255, 0, 233, 50 % );
+    text-color:       rgba ( 225, 229, 255, 100 % );
+    border-radius: 1em;
+}
+
+element.alternate.normal, element.normal.normal {
+    background-color: rgba ( 42, 0, 42, 80 % );
+    text-color:       rgba ( 0, 0, 233, 100 % );
+    border-radius: 1em;
+
+}
+
+
+/*
+     If you want to change properties of selected element, edit tag element.selected.normal, to the all rest you are supposed
+     to edit element.alternate.normal and element.normal.normal. I am mentioning it because it makes me frustrated
+*/
+
