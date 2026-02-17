@@ -1,18 +1,22 @@
 #!/bin/bash
-
+: << COMMENT
+Be carefull! For the time being it is experimental script!
+ 
+COMMENT
 projectDir=$(pwd)
 echo "Installing dependencies"
 sudo pacman -Syu git alacritty rofi hyprland hyprpaper meson dart-sass stow || exit 1
-echo "Changing ownership"
-sudo chown -R $USER:$USER config
-cd
-echo "Moving repository to ~/.hyprexin-desktop-unofficial"
-newRepoDir=".hyprexin-desktop-unofficial"
-mkdir $newRepoDir
-mv $projectDir/* $newRepoDir
+
+newRepoDir="~/.hyprexin-desktop-unofficial"
+if [[ $projectDir != $newRepoDir ]]; then
+	echo "Moving repository to ~/.hyprexin-desktop-unofficial"
+        mkdir $newRepoDir
+        mv $projectDir $newRepoDir; else
+	echo "Cloned dir has correct location"
+fi
 
 for dir in $newRepoDir/config; do
-	if[ -e ~/.config/$dir ]; then
+	if [ -e ~/.config/$dir ]; then
 	        echo "Backuping ~/.config/$dir to ~/.config/$dir.backup"
 		mv ~/.config/$dir ~/.config/$dir.backup
 	fi
